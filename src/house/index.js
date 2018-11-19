@@ -15,7 +15,6 @@ class House extends Component {
 
   render() {
     const house = this.props.house;
-    const inquiry = this.state.inquiryShown ? <Inquiry house={house} /> : null;
 
     return (
       <div>
@@ -33,7 +32,7 @@ class House extends Component {
             <p className="price">${house.price}</p>
             <p>{house.description}</p>
             <img src={emailIcon} height="50" alt="inquiry" onClick={this.inquiryToggle} />
-            {inquiry}
+            {this.state.inquiryShown ? <Inquiry house={house} /> : null}
           </div>
         </div>
       </div>
