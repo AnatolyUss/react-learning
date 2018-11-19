@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './main-page.css';
 import Header from './header';
+import FeaturedHouse from './featured-house';
 
 class App extends Component {
   constructor (props) {
@@ -34,6 +35,7 @@ class App extends Component {
     return (
       <div className="container">
         <Header subtitle="Providing houses worldwide."/>
+        <FeaturedHouse house={this.state.featuredHouse}/>
       </div>
     );
   }
