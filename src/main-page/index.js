@@ -1,25 +1,39 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './main-page.css';
+import Header from './header';
 
 class App extends Component {
+  constructor (props) {
+    super(props);
+    this.state = Object.create(null);
+  }
+
+  componentDidMount() {
+    // This is one of React's lifecycle methods.
+    // Called after a component gets mounted (added to React's DOM tree).
+    this.fetchHouses();
+  }
+
+  async fetchHouses() {
+    const response = await fetch('./houses.json');
+    const allHouses = await response.json();
+    this.allHouses = allHouses;
+    this.determineFeaturedHouses();
+  }
+
+  determineFeaturedHouses() {
+    if (this.allHouses) {
+      const randomIndex = Math.floor(Math.random() * this.allHouses.length);
+      const featuredHouse = this.allHouses[randomIndex];
+      this.setState({ featuredHouse: featuredHouse });
+    }
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div className="container">
+        <Header subtitle="Providing houses worldwide."/>
       </div>
     );
   }
