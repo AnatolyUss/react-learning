@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 
 class Inquiry extends Component {
-  state = {
-    name: "",
-    email: "",
-    remarks: ""
+  constructor(props) {
+    super(props);
+    this.state = { name: '', email: '', remarks: '' }
   }
 
   onNameChange = (e) => {
@@ -26,8 +25,8 @@ class Inquiry extends Component {
     e.preventDefault();
     const house = this.props.house;
     const contactInfo = this.state;
-    //send
   }
+
   render() {
     return (
       <form className="mt-2">
